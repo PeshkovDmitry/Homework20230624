@@ -81,7 +81,7 @@ public class Main {
                 if (input.indexOf('*') > 0) System.out.println(firstMember * secondMember);
                 else if (input.indexOf('/') > 0) System.out.println(firstMember / secondMember);
                 else if (input.indexOf('+') > 0) System.out.println(firstMember + secondMember);
-                else System.out.println(firstMember - secondMember);
+                else if (input.indexOf('-') > 0) System.out.println(firstMember - secondMember);
             } else {
                 System.out.println("Выражение не распознано");
             }
