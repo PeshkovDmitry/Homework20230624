@@ -5,8 +5,8 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
 //        task01();
-        task02();
-//        task03();
+//        task02();
+        task03();
 //        task04();
     }
 
@@ -52,7 +52,41 @@ public class Main {
      */
 
     public static void task03(){
-
+        Scanner scanner = new Scanner(System.in);
+        String input = " ";
+        while (!input.isEmpty()) {
+            // Считываем выражение
+            System.out.println("Введите выражение -> ");
+            input = scanner.nextLine().trim();
+            // Выделяем и распознаем значения
+            String[] members = input.split("\\*|/|\\+|-");
+            float firstMember = 0;
+            float secondMember = 0;
+            boolean parsed = false;
+            try {
+                if (members.length == 2) {
+                    firstMember = Float.parseFloat(members[0]);
+                    secondMember = Float.parseFloat(members[1]);
+                    parsed = true;
+                } else if (members.length == 3) {
+                    firstMember = -1*Float.parseFloat(members[1]);
+                    secondMember = Float.parseFloat(members[2]);
+                    parsed = true;
+                }
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
+            // Если значения распознаны, производим математические операции
+            if (parsed) {
+                if (input.indexOf('*') > 0) System.out.println(firstMember * secondMember);
+                else if (input.indexOf('/') > 0) System.out.println(firstMember / secondMember);
+                else if (input.indexOf('+') > 0) System.out.println(firstMember + secondMember);
+                else System.out.println(firstMember - secondMember);
+            } else {
+                System.out.println("Выражение не распознано");
+            }
+        }
+        scanner.close();
     }
 
     /**
