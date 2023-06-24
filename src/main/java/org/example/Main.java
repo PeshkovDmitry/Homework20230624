@@ -6,8 +6,8 @@ public class Main {
     public static void main(String[] args) {
 //        task01();
 //        task02();
-        task03();
-//        task04();
+//        task03();
+        task04();
     }
 
     /**
@@ -97,7 +97,44 @@ public class Main {
      */
 
     public static void task04(){
-
+        // Считываем выражение
+        System.out.println("Введите выражение -> ");
+        Scanner scanner = new Scanner(System.in);
+        String input = scanner.nextLine().trim();
+        // Определяем количество знаков вопроса
+        int count = 0;
+        for (char c : input.toCharArray()) {
+            if (c == '?') count++;
+        }
+        // Перебираем все возможные варианты
+        boolean hasDecision = false;
+        for (int num = 0; num < Math.pow(10,count); num++) {
+            // Подставляем значения
+            String expr = input.trim();
+            int n = num;
+            while (expr.indexOf('?') > 0) {
+                String numStr = String.valueOf(n % 10);
+                n /= 10;
+                expr = expr.replaceFirst("\\?", numStr);
+            }
+            // Выделяем и распознаем значения
+            String[] members = expr.split("\\+|=");
+            try {
+                int firstMember = Integer.parseInt(members[0].trim());
+                int secondMember = Integer.parseInt(members[1].trim());
+                int result = Integer.parseInt(members[2].trim());
+                if (firstMember + secondMember == result) {
+                    System.out.println(expr);
+                    hasDecision = true;
+                }
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
+        }
+        if (!hasDecision) {
+            System.out.println("Решение не найдено");
+        }
+        scanner.close();
     }
 
 
