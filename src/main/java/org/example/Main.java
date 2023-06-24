@@ -4,8 +4,8 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        task01();
-//        task02();
+//        task01();
+        task02();
 //        task03();
 //        task04();
     }
@@ -36,7 +36,15 @@ public class Main {
      * 2) Вывести все простые числа от 1 до 1000
      */
     public static void task02(){
-
+        for (int i = 1; i <= 1000; i++) {
+            boolean isSimple = true;
+            boolean lessThanSqrt = true;
+            for (int j = 2; j < i && lessThanSqrt; j++) {
+                if (i % j == 0) isSimple = false;
+                if (j * j > i) lessThanSqrt = false;
+            }
+            if (isSimple) System.out.printf("%d ", i);
+        }
     }
 
     /**
